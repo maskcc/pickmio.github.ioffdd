@@ -3,17 +3,29 @@
 <head>
   <meta charset="utf-8">
   
-  <title>PickMio&#39;s 藏书阁</title>
+  <title>C++ 简单常见错误backup | PickMio&#39;s 藏书阁</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="人无远虑必有近忧">
-<meta property="og:type" content="website">
-<meta property="og:title" content="PickMio's 藏书阁">
-<meta property="og:url" content="pickmio.github.io/archives/2015/index.html">
+  <meta name="description" content="编译器报错
+Vector错误,未声明的标识符1error C2065: “vector”: 未声明的标识符
+
+
+当我们include&amp;lt;vector&amp;gt;后，在使用vector时，编译器仍然报错，这是因为C++的大多数类型是位于命名空间std内，此时应该使用std命名空间std::vecotr或者使用namespace，using namespace std;。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 简单常见错误backup">
+<meta property="og:url" content="pickmio.github.io/2015/03/19/C++简单常见错误backup/index.html">
 <meta property="og:site_name" content="PickMio's 藏书阁">
-<meta property="og:description" content="人无远虑必有近忧">
+<meta property="og:description" content="编译器报错
+Vector错误,未声明的标识符1error C2065: “vector”: 未声明的标识符
+
+
+当我们include&amp;lt;vector&amp;gt;后，在使用vector时，编译器仍然报错，这是因为C++的大多数类型是位于命名空间std内，此时应该使用std命名空间std::vecotr或者使用namespace，using namespace std;。">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PickMio's 藏书阁">
-<meta name="twitter:description" content="人无远虑必有近忧">
+<meta name="twitter:title" content="C++ 简单常见错误backup">
+<meta name="twitter:description" content="编译器报错
+Vector错误,未声明的标识符1error C2065: “vector”: 未声明的标识符
+
+
+当我们include&amp;lt;vector&amp;gt;后，在使用vector时，编译器仍然报错，这是因为C++的大多数类型是位于命名空间std内，此时应该使用std命名空间std::vecotr或者使用namespace，using namespace std;。">
   
     <link rel="alternative" href="/atom.xml" title="PickMio&#39;s 藏书阁" type="application/atom+xml">
   
@@ -63,77 +75,63 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/03/19/C++简单常见错误backup/" class="archive-article-date">
-  <time datetime="2015-03-19T08:39:41.000Z" itemprop="datePublished">3月 19</time>
+        <section id="main"><article id="post-C++简单常见错误backup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/19/C++简单常见错误backup/" class="article-date">
+  <time datetime="2015-03-19T08:39:41.000Z" itemprop="datePublished">2015-03-19</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-学习/">C++学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/19/C++简单常见错误backup/">C++ 简单常见错误backup</a>
+    <h1 class="article-title" itemprop="name">
+      C++ 简单常见错误backup
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/03/18/hexo-github-搭建过程/" class="archive-article-date">
-  <time datetime="2015-03-18T12:31:07.000Z" itemprop="datePublished">3月 18</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/18/hexo-github-搭建过程/">hexo + GitHub 搭建个人Blog过程</a>
-    </h1>
-  
+        <h2 id="编译器报错">编译器报错</h2><ol>
+<li>Vector错误,未声明的标识符<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">error</span> C2065: “<span class="keyword">vector</span>”: 未声明的标识符</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>当我们<code>include&lt;vector&gt;</code>后，在使用vector时，编译器仍然报错，这是因为C++的大多数类型是位于命名空间std内，此时应该使用std命名空间<code>std::vecotr</code>或者使用namespace，<code>using namespace std;</code>。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/03/16/hello-world/" class="archive-article-date">
-  <time datetime="2015-03-16T14:53:18.202Z" itemprop="datePublished">3月 16</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/03/16/hello-world/">Hello World</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="pickmio.github.io/2015/03/19/C++简单常见错误backup/" data-id="ci7fx7i8g0000b0a4qke5ilye" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/错误/">错误</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/03/18/hexo-github-搭建过程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexo + GitHub 搭建个人Blog过程</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">

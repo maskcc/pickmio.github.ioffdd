@@ -37,7 +37,7 @@
       </h1>
       
         <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">study is no end</a>
+          <a href="/" id="subtitle">Endless study</a>
         </h2>
       
     </div>
@@ -64,6 +64,53 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-C++简单常见错误backup" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/03/19/C++简单常见错误backup/" class="article-date">
+  <time datetime="2015-03-19T08:39:41.000Z" itemprop="datePublished">2015-03-19</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/C-学习/">C++学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/03/19/C++简单常见错误backup/">C++ 简单常见错误backup</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="编译器报错">编译器报错</h2><ol>
+<li>Vector错误,未声明的标识符<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">error</span> C2065: “<span class="keyword">vector</span>”: 未声明的标识符</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>当我们<code>include&lt;vector&gt;</code>后，在使用vector时，编译器仍然报错，这是因为C++的大多数类型是位于命名空间std内，此时应该使用std命名空间<code>std::vecotr</code>或者使用namespace，<code>using namespace std;</code>。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="pickmio.github.io/2015/03/19/C++简单常见错误backup/" data-id="ci7fx7i8g0000b0a4qke5ilye" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/">c++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/错误/">错误</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-hexo-github-搭建过程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -100,7 +147,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="pickmio.github.io/2015/03/18/hexo-github-搭建过程/" data-id="ci7eur3wt0001fsa43np6xddt" class="article-share-link">Share</a>
+      <a data-url="pickmio.github.io/2015/03/18/hexo-github-搭建过程/" data-id="ci7fx53km000034a4yt1l4llz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/">blog</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/">web</a></li></ul>
@@ -147,7 +194,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="pickmio.github.io/2015/03/16/hello-world/" data-id="ci7eur3wl0000fsa4utsvuuok" class="article-share-link">Share</a>
+      <a data-url="pickmio.github.io/2015/03/16/hello-world/" data-id="ci7fx53kw000734a4mwevufjc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -166,7 +213,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/博客基础/">博客基础</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-学习/">C++学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客基础/">博客基础</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -175,7 +222,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误/">错误</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -184,7 +231,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/blog/" style="font-size: NaNpx;">blog</a><a href="/tags/web/" style="font-size: NaNpx;">web</a>
+      <a href="/tags/blog/" style="font-size: NaNpx;">blog</a><a href="/tags/c/" style="font-size: NaNpx;">c++</a><a href="/tags/web/" style="font-size: NaNpx;">web</a><a href="/tags/错误/" style="font-size: NaNpx;">错误</a>
     </div>
   </div>
 
@@ -193,7 +240,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -203,6 +250,10 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2015/03/19/C++简单常见错误backup/">C++ 简单常见错误backup</a>
+          </li>
         
           <li>
             <a href="/2015/03/18/hexo-github-搭建过程/">hexo + GitHub 搭建个人Blog过程</a>
