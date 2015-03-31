@@ -1,228 +1,351 @@
-<!DOCTYPE html>
-<html>
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   
-  <title>发牌程序 | PickMio&#39;s 藏书阁</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="简介今天在100个常用算法中看见了一个打乱扑克的算法，将54张牌打乱，相当于洗牌。给出的答案很巧妙。结合之前公司面试新人的一道模拟发牌的程序，我也试着写了一些，不过是函数形式，没涉及到类。今天把她封装了一下，实现了这个打乱数组的方法。
-其实算法很简单，相当于将1到54个数字的一维数组里面的顺序打乱。先随机产生一个1到54的整数，作为该数组的下标，再从位置1开始，将位置1的数字和将随机数作为下标的那">
-<meta property="og:type" content="article">
-<meta property="og:title" content="发牌程序">
-<meta property="og:url" content="pickmio.github.io/2015/03/19/发牌程序/index.html">
-<meta property="og:site_name" content="PickMio's 藏书阁">
-<meta property="og:description" content="简介今天在100个常用算法中看见了一个打乱扑克的算法，将54张牌打乱，相当于洗牌。给出的答案很巧妙。结合之前公司面试新人的一道模拟发牌的程序，我也试着写了一些，不过是函数形式，没涉及到类。今天把她封装了一下，实现了这个打乱数组的方法。
-其实算法很简单，相当于将1到54个数字的一维数组里面的顺序打乱。先随机产生一个1到54的整数，作为该数组的下标，再从位置1开始，将位置1的数字和将随机数作为下标的那">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="发牌程序">
-<meta name="twitter:description" content="简介今天在100个常用算法中看见了一个打乱扑克的算法，将54张牌打乱，相当于洗牌。给出的答案很巧妙。结合之前公司面试新人的一道模拟发牌的程序，我也试着写了一些，不过是函数形式，没涉及到类。今天把她封装了一下，实现了这个打乱数组的方法。
-其实算法很简单，相当于将1到54个数字的一维数组里面的顺序打乱。先随机产生一个1到54的整数，作为该数组的下标，再从位置1开始，将位置1的数字和将随机数作为下标的那">
-  
-    <link rel="alternative" href="/atom.xml" title="PickMio&#39;s 藏书阁" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
-
+    <title>发牌程序 | PickMio&#39;s 藏书阁</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="PickMio">
+    
+    <meta name="description" content="简介今天在100个常用算法中看见了一个打乱扑克的算法，将54张牌打乱，相当于洗牌。给出的答案很巧妙。结合之前公司面试新人的一道模拟发牌的程序，我也试着写了一些，不过是函数形式，没涉及到类。今天把她封装了一下，实现了这个打乱数组的方法。
+其实算法很简单，相当于将1到54个数字的一维数组里面的顺序打乱。先随机产生一个1到54的整数，作为该数组的下标，再从位置1开始，将位置1的数字和将随机数作为下标的那个数字交换位置，一直到第54个数字，此时数据已经打乱。在算法导论有证明其科学性，还要再深入。伪代码如下:12345RankPoker(A,n)for(int c = 0; c &amp;lt; 54; c++)&amp;#123;  swap(A[i],A[rand(1,n)]);&amp;#125;
+类的信息将扑克牌作为了一个类，有face(牌的卡面),type(花色)两种属性，有设置和读取牌面花色的方法。牌面和花色的名称按照从小到大的数字存在两个string组成的数组FACE,TYPE里面,可以直接用FACE(card.face)获得卡牌的牌面名称如”老K”,用TYPE[card.type]获取卡牌花色如”红桃”。由于face和type存储的是数字，从而比较牌的大小也比较方便，直接使用stl的sort方法。具体代码可在https://github.com/PickMio/Poker/查看。">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">PickMio&#39;s 藏书阁</a>
-      </h1>
-      
-        <h2 id="subtitle-wrap">
-          <a href="/" id="subtitle">Endless study</a>
-        </h2>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:pickmio.github.io"></form>
-      </div>
-    </div>
-  </div>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="PickMio&#39;s 藏书阁" title="PickMio&#39;s 藏书阁"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="PickMio&#39;s 藏书阁">PickMio&#39;s 藏书阁</a></h1>
+				<h2 class="blog-motto">Endless study</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:pickmio.github.io">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/03/19/发牌程序/" title="发牌程序" itemprop="url">发牌程序</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="pickmio.github.io" title="PickMio">PickMio</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-03-19T15:22:52.000Z" itemprop="datePublished">2015-03-19</time>
+    更新日期:<time datetime="2015-03-19T15:49:38.361Z" itemprop="dateModified">2015-03-19</time>
+    
+  </p>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-发牌程序" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/03/19/发牌程序/" class="article-date">
-  <time datetime="2015-03-19T15:22:52.000Z" itemprop="datePublished">2015-03-19</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      发牌程序
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="简介">简介</h2><p>今天在100个常用算法中看见了一个打乱扑克的算法，将54张牌打乱，相当于洗牌。给出的答案很巧妙。结合之前公司面试新人的一道模拟发牌的程序，我也试着写了一些，不过是函数形式，没涉及到类。今天把她封装了一下，实现了这个打乱数组的方法。</p>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的信息"><span class="toc-number">2.</span> <span class="toc-text">类的信息</span></a></li></ol>
+		</div>
+		
+		<h2 id="简介">简介</h2><p>今天在100个常用算法中看见了一个打乱扑克的算法，将54张牌打乱，相当于洗牌。给出的答案很巧妙。结合之前公司面试新人的一道模拟发牌的程序，我也试着写了一些，不过是函数形式，没涉及到类。今天把她封装了一下，实现了这个打乱数组的方法。</p>
 <p>其实算法很简单，相当于将1到54个数字的一维数组里面的顺序打乱。先随机产生一个1到54的整数，作为该数组的下标，再从位置1开始，将位置1的数字和将随机数作为下标的那个数字交换位置，一直到第54个数字，此时数据已经打乱。在算法导论有证明其科学性，还要再深入。伪代码如下:<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">RankPoker</span>(<span class="type">A</span>,n)</span><br><span class="line"><span class="keyword">for</span>(int <span class="built_in">c</span> = <span class="number">0</span>; <span class="built_in">c</span> &lt; <span class="number">54</span>; <span class="built_in">c</span>++)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="built_in">swap</span>(<span class="type">A</span>[i],<span class="type">A</span>[rand(<span class="number">1</span>,n)]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h2 id="类的信息">类的信息</h2><p>将扑克牌作为了一个类，有<code>face</code>(牌的卡面),<code>type</code>(花色)两种属性，有设置和读取牌面花色的方法。牌面和花色的名称按照从小到大的数字存在两个string组成的数组<code>FACE</code>,<code>TYPE</code>里面,可以直接用<code>FACE(card.face)</code>获得卡牌的牌面名称如”老K”,用<code>TYPE[card.type]</code>获取卡牌花色如”红桃”。由于face和type存储的是数字，从而比较牌的大小也比较方便，直接使用<code>stl</code>的<code>sort</code>方法。<br>具体代码可在<a href="https://github.com/PickMio/Poker/" target="_blank" rel="external">https://github.com/PickMio/Poker/</a>查看。<br><a id="more"></a><br>具体类如下，还有许多要考虑的，如是否该添加个裁判类和player类。玩一局牌，添加打牌规则等。语法方面注释里面有。</p>
 <p><strong>1.    定义卡牌</strong></p>
 <figure class="highlight thrift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CARDS_FACE</span> </span>&#123;</span><br><span class="line">    CARD_3 = <span class="number">0</span>,</span><br><span class="line">    CARD_4,</span><br><span class="line">    CARD_5,</span><br><span class="line">    CARD_6,</span><br><span class="line">    CARD_7,</span><br><span class="line">    CARD_8,</span><br><span class="line">    CARD_9,</span><br><span class="line">    CARD_10,</span><br><span class="line">    CARD_J,</span><br><span class="line">    CARD_Q,</span><br><span class="line">    CARD_K,</span><br><span class="line">    CARD_A,</span><br><span class="line">    CARD_2,</span><br><span class="line">    MAX_CARD_FACE,  <span class="comment">//前面的都有花色</span></span><br><span class="line">    CARD_JOKER,</span><br><span class="line">    CARD_BIG_JOKER</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">CARD_TYPE</span></span>&#123;</span><br><span class="line">    RED_HEART = <span class="number">0</span>,<span class="comment">//红桃</span></span><br><span class="line">    BLACK_HEART,<span class="comment">//黑桃</span></span><br><span class="line">    SQURE,<span class="comment">//方块</span></span><br><span class="line">    FLOWER,<span class="comment">//梅花</span></span><br><span class="line">    MAX_TYPE</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p><strong>2.  卡牌类</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/****</span><br><span class="line">*关于这里用struct好还是class好不确定 ???</span><br><span class="line">*set用来设置花色和牌面</span><br><span class="line">*get用来获得花色和牌面</span><br><span class="line">*face和type都是卡牌拥有的属性,用get和set设置</span><br><span class="line">**/</span></span><br><span class="line"><span class="keyword">class</span> Card&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">set_face</span><span class="params">(<span class="keyword">const</span> CARDS_FACE&amp; face)</span></span>&#123;<span class="keyword">if</span>(face &lt; CARD_3 || face &gt; CARD_BIG_JOKER )<span class="keyword">return</span>; <span class="keyword">this</span>-&gt;face = face; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">set_type</span><span class="params">(<span class="keyword">const</span> CARD_TYPE&amp; type)</span></span>&#123;<span class="keyword">if</span>(type &lt; RED_HEART || type &gt; MAX_TYPE )<span class="keyword">return</span>;<span class="keyword">this</span>-&gt;type = type; &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//显示用</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">const</span> <span class="built_in">string</span> <span class="title">get_face_name</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> FACES[face];&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">const</span> <span class="built_in">string</span> <span class="title">get_type_name</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> COLOR[type];&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//排序用</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> CARDS_FACE <span class="title">get_face</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> face;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> CARD_TYPE <span class="title">get_type</span><span class="params">()</span></span>&#123; <span class="keyword">return</span> type;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    CARDS_FACE face;<span class="comment">//卡牌名字  FACE[face]//牌名</span></span><br><span class="line">    CARD_TYPE  type; <span class="comment">//4种花色 COLOR[type]</span></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">string</span> FACES[<span class="number">16</span>];</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="built_in">string</span> COLOR[<span class="number">5</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> Card::FACES[<span class="number">16</span>] = &#123;</span><br><span class="line">    <span class="string">"3"</span>,<span class="string">"4"</span>,<span class="string">"5"</span>,<span class="string">"6"</span>,<span class="string">"7"</span>,<span class="string">"8"</span>,<span class="string">"9"</span>,<span class="string">"10"</span>,<span class="string">"J"</span>,<span class="string">"Q"</span>,<span class="string">"K"</span>,<span class="string">"A"</span>,<span class="string">"2"</span>,<span class="string">""</span>,<span class="string">"Joker"</span>,<span class="string">"Big Joker"</span>&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="built_in">string</span> Card::COLOR[<span class="number">5</span>] = &#123;</span><br><span class="line">    <span class="string">"红桃"</span>,<span class="string">"黑桃"</span>,<span class="string">"方块"</span>,<span class="string">"梅花"</span>,<span class="string">""</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p><strong>3. 扑克管理类</strong></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> PokerMgr</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    PokerMgr()&#123;prepare_cards();&#125;<span class="comment">//构造函数时自动生成新牌</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shuffle_the_cards</span><span class="params">()</span></span>;<span class="comment">//洗牌</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">get_a_card</span><span class="params">(Card &amp;card)</span></span>;  <span class="comment">//如果卡牌是乱序的,获得一张牌</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">give_card</span><span class="params">(Card &amp;card)</span></span>;<span class="comment">//发牌，按照顺序发牌,失败返回false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">prepare_cards</span><span class="params">()</span></span>;<span class="comment">//准备一副新牌</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span>&#123;<span class="keyword">this</span>-&gt;prepare_cards();&#125;</span><br><span class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;Card&gt;</span> pile;<span class="comment">//一堆牌</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="pickmio.github.io/2015/03/19/发牌程序/" data-id="ci7gb4lfd00078wa4ektflvtp" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/算法/">算法</a></li></ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> PokerMgr</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    PokerMgr()&#123;prepare_cards();&#125;<span class="comment">//构造函数时自动生成新牌</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">shuffle_the_cards</span><span class="params">()</span></span>;<span class="comment">//洗牌</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">get_a_card</span><span class="params">(Card &amp;card)</span></span>;  <span class="comment">//如果卡牌是乱序的,获得一张牌</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">give_card</span><span class="params">(Card &amp;card)</span></span>;<span class="comment">//发牌，按照顺序发牌,失败返回false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">prepare_cards</span><span class="params">()</span></span>;<span class="comment">//准备一副新牌</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reset</span><span class="params">()</span></span>&#123;<span class="keyword">this</span>-&gt;prepare_cards();&#125;</span><br><span class="line">    <span class="stl_container"><span class="built_in">vector</span>&lt;Card&gt;</span> pile;<span class="comment">//一堆牌</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
 
-    </footer>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/算法/">算法</a>
   </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2015/03/19/C++简单常见错误backup/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">C++ 简单常见错误backup</div>
-    </a>
-  
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/数据结构与算法/">数据结构与算法</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="pickmio.github.io/2015/03/19/发牌程序/" data-title="发牌程序 | PickMio&#39;s 藏书阁" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/03/31/hexo-更换主题-to-pacman/" title="hexo 更换主题 to pacman">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  hexo 更换主题 to pacman</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/03/19/C++简单常见错误backup/"  title="C++ 简单常见错误backup">
+ <strong>NEXT:</strong><br/> 
+ <span>C++ 简单常见错误backup
+</span>
+</a>
+</div>
+
 </nav>
 
-  
-</article>
-
+	
+<section class="comment">
+	<div class="ds-thread"></div>
 </section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-学习/">C++学习</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/博客基础/">博客基础</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构与算法/">数据结构与算法</a><span class="category-list-count">1</span></li></ul>
-    </div>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类的信息"><span class="toc-number">2.</span> <span class="toc-text">类的信息</span></a></li></ol>
   </div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/">blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/">c++</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web/">web</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/错误/">错误</a><span class="tag-list-count">1</span></li></ul>
-    </div>
-  </div>
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/blog/" style="font-size: NaNpx;">blog</a><a href="/tags/c/" style="font-size: NaNpx;">c++</a><a href="/tags/web/" style="font-size: NaNpx;">web</a><a href="/tags/算法/" style="font-size: NaNpx;">算法</a><a href="/tags/错误/" style="font-size: NaNpx;">错误</a>
-    </div>
-  </div>
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/C-学习/" title="C++学习">C++学习<sup>1</sup></a></li>
+		
+			<li><a href="/categories/博客基础/" title="博客基础">博客基础<sup>2</sup></a></li>
+		
+			<li><a href="/categories/数据结构与算法/" title="数据结构与算法">数据结构与算法<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
 
   
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">三月 2015</a><span class="archive-list-count">4</span></li></ul>
-    </div>
-  </div>
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/blog/" title="blog">blog<sup>2</sup></a></li>
+		
+			<li><a href="/tags/c/" title="c++">c++<sup>1</sup></a></li>
+		
+			<li><a href="/tags/web/" title="web">web<sup>2</sup></a></li>
+		
+			<li><a href="/tags/算法/" title="算法">算法<sup>1</sup></a></li>
+		
+			<li><a href="/tags/错误/" title="错误">错误<sup>1</sup></a></li>
+		
+		</ul>
+</div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/03/19/发牌程序/">发牌程序</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/19/C++简单常见错误backup/">C++ 简单常见错误backup</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/18/hexo-github-搭建过程/">hexo + GitHub 搭建个人Blog过程</a>
-          </li>
-        
-          <li>
-            <a href="/2015/03/16/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
-  
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 PickMio<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+</div>
     </div>
-  </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="pickmio.github.io" target="_blank" title="PickMio">PickMio</a>
+		
+		</p>
+</div>
 </footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
 
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
 
 
-<script src="/js/script.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
-  </div>
-</body>
+
+
+
+
+  </body>
 </html>
